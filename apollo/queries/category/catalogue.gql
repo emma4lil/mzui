@@ -1,0 +1,16 @@
+query Catalogue {
+  catalogues {
+    name
+    categories {
+      name
+      id
+      children {
+        name
+        slug
+        product {
+          name
+        }
+      }
+    }
+  }
+}
