@@ -9,7 +9,7 @@
       class="text--dark align-end rounded-lg"
       :aspect-ratio="16 / 9"
       height="300px"
-      :src="'http://localhost:1337' + pro.cover.url"
+      :src="API_URL + pro.cover.url"
     >
       <template v-if="auction">
         <div class="d-flex justify-end">
@@ -21,7 +21,7 @@
       <div class="text-h5">
         {{ pro.name }}
       </div>
-      <div class="text-subtitle-1">&#8358;{{ pro.priceInfo.newprice }}</div>
+      <div class="text-subtitle-1">&#8358;{{ pro.price.newprice }}</div>
     </v-card-text>
   </v-card>
 </template>
@@ -29,6 +29,11 @@
 <script>
 export default {
   props: ['pro', 'auction'],
+  data() {
+    return {
+      API_URL: process.env.baseUrl,
+    }
+  },
   methods: {
     goto() {
       this.$router.push('/products/' + this.pro.id)

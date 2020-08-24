@@ -1,0 +1,49 @@
+{
+  "data": {
+    "statusCode": 400,
+    "error": "Bad Request",
+    "message": [
+      {
+        "messages": [
+          {
+            "id": "Auth.form.error.password.provide",
+            "message": "Please provide your password."
+          }
+        ]
+      }
+    ],
+    "data": [
+      {
+        "messages": [
+          {
+            "id": "Auth.form.error.password.provide",
+            "message": "Please provide your password."
+          }
+        ]
+      }
+    ]
+  },
+  "status": 400,
+  "statusText": "Bad Request",
+  "headers": {
+    "content-length": "259",
+    "content-type": "application/json; charset=utf-8"
+  },
+  "config": {
+    "url": "/auth/local/register",
+    "method": "post",
+    "data": "{\"username\":\"lilo\",\"email\":\"emma4lil@gmail.com\",\"password\":\"\"}",
+    "headers": {
+      "Accept": "application/json, text/plain, */*",
+      "Content-Type": "application/json;charset=utf-8"
+    },
+    "baseURL": "http://localhost:1337",
+    "transformRequest": [null],
+    "transformResponse": [null],
+    "timeout": 0,
+    "xsrfCookieName": "XSRF-TOKEN",
+    "xsrfHeaderName": "X-XSRF-TOKEN",
+    "maxContentLength": -1
+  },
+  "request": {}
+}

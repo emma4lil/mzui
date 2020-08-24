@@ -1,5 +1,7 @@
 /* eslint-disable no-unused-vars */
 
+const API_URL = process.env.baseUrl
+
 export const state = () => ({
   products: [],
 })

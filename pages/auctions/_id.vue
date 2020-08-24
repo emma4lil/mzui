@@ -79,18 +79,17 @@
                   </v-card-title>
                   <v-card-text>
                     <div>
-                      <v-sheet color="primary" class="mb-2 rounded-lg">
+                      <v-sheet
+                        v-for="(item, index) in auctionRecords"
+                        :key="index"
+                        color="primary"
+                        class="mb-2 rounded-lg"
+                      >
                         <div class="d-flex px-4">
-                          <span class="ml-4">1.</span>
+                          <span class="ml-4">{{ index + 1 }}</span>
                           <span class="ml-4">Emma****lil</span>
-                          <span class="ml-4">223.4</span>
-                        </div>
-                      </v-sheet>
-                      <v-sheet color="primary" class="mb-2 rounded-lg">
-                        <div class="d-flex px-4">
-                          <span class="ml-4">2.</span>
-                          <span class="ml-4">Josh****lil</span>
-                          <span class="ml-4">23.4</span>
+                          <span class="ml-4">{{ item.amount }}</span>
+                          <span class="ml-4">{{ item.bid_date }}</span>
                         </div>
                       </v-sheet>
                     </div>
@@ -124,6 +123,9 @@
             </v-row>
           </v-card-text>
         </v-card>
+        bids
+        {{ auctionRecords }}
+        {{ routeParam }}
       </v-col>
     </v-row>
   </v-container>
@@ -131,6 +133,7 @@
 
 <script>
 import flipCountdown from 'vue2-flip-countdown'
+import auction from '../../apollo/queries/auctions/auction'
 export default {
   components: {
     Product: () => import('../../components/Product'),
@@ -150,7 +153,19 @@ export default {
         },
       },
       auction_list: [],
+      auctionRecords: [],
+      routeParam: this.$route.params.id,
     }
+  },
+  apollo: {
+    auctionRecords: {
+      query: auction,
+      variables() {
+        return {
+          auctionID: +this.routeParam,
+        }
+      },
+    },
   },
 
   created() {

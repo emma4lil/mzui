@@ -1,5 +1,5 @@
 <template>
-  <v-container class="fill-height" fluid>
+  <v-container class="" fluid>
     <!-- UserInfo Card -->
     <v-row align="" justify="center">
       <v-col col="12" sm="8" md="12">
@@ -22,7 +22,7 @@
     <v-row v-if="!$auth.user" align="center" justify="center">
       <v-col cols="12" sm="8" md="4">
         <v-card class="elevation-12">
-          <v-toolbar color="primary" dark flat>
+          <v-toolbar color="primary" flat>
             <v-toolbar-title>Sign In</v-toolbar-title>
             <v-spacer></v-spacer>
           </v-toolbar>
@@ -44,14 +44,18 @@
                 prepend-icon="mdi-lock"
                 type="password"
               ></v-text-field>
-              <p>Forgot Password?</p>
+              <nuxt-link to="/iam/forgotme">forgot password</nuxt-link>
             </v-form>
           </v-card-text>
 
-          <v-card-actions>
-            <v-btn flat color="primary">Register</v-btn>
-            <v-spacer></v-spacer>
-            <v-btn flat color="primary" @click="doLogin">Login</v-btn>
+          <v-card-actions class="d-flex flex-column">
+            <v-btn block flat color="primary" @click="doLogin">Login</v-btn>
+
+            <div class="my-2">Or</div>
+
+            <v-btn block to="/iam/register" flat color="primary"
+              >Register</v-btn
+            >
           </v-card-actions>
         </v-card>
       </v-col>

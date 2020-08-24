@@ -56,9 +56,9 @@
         <v-menu open-on-hover offset-y>
           <template v-slot:activator="{ on }">
             <v-btn to="/catalogue" v-on="on">
-              <span>Our Catalogue</span>
+              <span>Catalogue</span>
             </v-btn>
-            <v-btn to="/shop" v-on="on">
+            <v-btn to="/products" v-on="on">
               <span>Shop</span>
             </v-btn>
           </template>
@@ -73,14 +73,8 @@
           </v-card>
         </v-menu>
 
-        <v-btn to="/bits">
-          <span>PayInBit</span>
-        </v-btn>
         <v-btn to="/blog">
           <span>Blog</span>
-        </v-btn>
-        <v-btn to="/product">
-          <span>Products</span>
         </v-btn>
       </v-bottom-navigation>
       <router-view />

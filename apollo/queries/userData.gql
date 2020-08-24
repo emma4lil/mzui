@@ -1,0 +1,12 @@
+query getUserProdileMeta($id: ID!) {
+  user(id: $id) {
+    email
+    wallet {
+      balance
+      floating_balance
+    }
+    pib_records {
+      paid_amount
+    }
+  }
+}

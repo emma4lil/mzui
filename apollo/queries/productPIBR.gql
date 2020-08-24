@@ -1,0 +1,26 @@
+query bits($product_id: ID!) {
+  product(id: $product_id) {
+    name
+    price {
+      newprice
+    }
+    cover {
+      url
+    }
+    pay_in_bit {
+      name
+      id
+      pibMeta {
+        min_amount
+        max_amount
+        max_bid_count
+        expiries
+        hold_days
+      }
+      pib_records {
+        name
+        paid_amount
+      }
+    }
+  }
+}

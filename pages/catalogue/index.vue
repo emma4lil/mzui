@@ -2,7 +2,7 @@
   <div>
     <v-container>
       <div class="d-flex flex-column align-center">
-        <div class="text-h3 text-md-2 my-4">Product Catalogue</div>
+        <div class="text-h3 text-md-2 my-4">Browse Our Catalogue</div>
         <div style="mx-auto">
           <p class="text-center mb-12">
             Browse through our 300+ product categories and sub categories and
@@ -10,6 +10,8 @@
           </p>
         </div>
       </div>
+
+      <Visited />
 
       <v-row>
         <v-col
@@ -104,6 +106,7 @@ export default {
   },
   components: {
     CategoryCard: () => import('../../components/Category'),
+    Visited: () => import('../../components/MostVisited'),
   },
   methods: {
     gotoChild() {

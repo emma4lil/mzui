@@ -1,0 +1,15 @@
+query getProductByTag($id: ID!) {
+  tag(id: $id) {
+    products {
+      id
+      name
+      price {
+        newprice
+        oldprice
+      }
+      cover {
+        url
+      }
+    }
+  }
+}

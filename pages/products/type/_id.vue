@@ -2,20 +2,17 @@ import { mapState } from 'vuex';
 <template>
   <v-container>
     <v-row>
-      <v-col>
-        image banner
-      </v-col>
-    </v-row>
-
-    <v-row>
       <v-col cols="12">
         <v-breadcrumbs class="pb-0" :items="breadcrums"></v-breadcrumbs>
 
         <v-row dense>
-          <v-col cols="12" sm="8" class="pl-6 pt-6">
-            <small>Showing 1-12 of {{ products.length }} products</small>
+          <v-col cols="12" sm="12" class="pl-6 pt-6">
+            <small>Showinga {{ products.length }} products</small>
           </v-col>
-          <v-col cols="12" sm="4">
+          <v-col cols="12" sm="9">
+            <ProductFilter></ProductFilter>
+          </v-col>
+          <v-col cols="12" sm="3">
             <v-select
               v-model="select"
               class="pa-0"
@@ -30,13 +27,13 @@ import { mapState } from 'vuex';
         <v-divider></v-divider>
 
         <v-row>
-          <v-col v-for="pro in products" :key="pro.id" cols="6" md="3">
+          <v-col v-for="pro in tag.products" :key="pro.id" cols="6" md="3">
             <ProductCard :pro="pro" />
           </v-col>
         </v-row>
-        <div class="text-center mt-12">
+        <!-- <div class="text-center mt-12">
           <v-pagination v-model="page" :length="6"></v-pagination>
-        </div>
+        </div> -->
       </v-col>
     </v-row>
   </v-container>
@@ -53,8 +50,10 @@ import { mapState } from 'vuex';
 </style>
 <script>
 import { mapState } from 'vuex'
+import productByTag from '../../../apollo/queries/category/productByTag'
 export default {
   data: () => ({
+    name: '',
     range: [0, 10000],
     select: 'Popularity',
     options: [
@@ -106,13 +105,27 @@ export default {
       },
     ],
   }),
+  created() {
+    this.api_url = process.env.baseUrl
+  },
   computed: {
     ...mapState({
       products: (state) => state.products.products,
     }),
   },
+  apollo: {
+    tag: {
+      query: productByTag,
+      variables() {
+        return {
+          id: this.$route.params.id,
+        }
+      },
+    },
+  },
   components: {
-    ProductCard: () => import('../components/Product'),
+    ProductCard: () => import('../../../components/Product'),
+    ProductFilter: () => import('../../../components/Productfilter'),
   },
 }
 </script>

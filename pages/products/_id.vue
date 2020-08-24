@@ -7,7 +7,7 @@
             <v-carousel-item
               v-for="(image, index) in product.images"
               :key="index"
-              :src="'http://localhost:1337' + image.url"
+              :src="$API_URL + image.url"
             ></v-carousel-item>
           </v-carousel>
         </v-col>
@@ -19,12 +19,12 @@
             <v-card-actions class="pa-0">
               <p class="headline font-weight-light pt-3">
                 <del style="" class="caption font-weight-thin"
-                  >&#8358;{{ product.priceInfo.oldprice }}</del
+                  >&#8358;{{ product.price.oldprice }}</del
                 >
               </p>
               <p class="headline font-weight-light pt-3 ml-3">
                 <span style="" class="subtitle-1 font-weight-bold"
-                  >&#8358;{{ product.priceInfo.newprice }}</span
+                  >&#8358;{{ product.price.newprice }}</span
                 >
               </p>
               <v-spacer></v-spacer>
@@ -331,7 +331,7 @@ export default {
   middleware: 'auth',
   data: () => ({
     product: {
-      priceInfo: {
+      price: {
         newprice: 0,
         oldprice: 0,
       },

@@ -11,13 +11,9 @@ import { mapState } from 'vuex';
           </p>
         </div>
       </div>
-      <v-row>
-        <v-col cols="12">
-          <v-btn block color="dark">back</v-btn>
-        </v-col>
-        <!-- {{ categories }}
-        {{ $route.params.id }} -->
-      </v-row>
+      <!-- Fequent categories -->
+      <Visited />
+
       <v-row v-if="true">
         <v-col
           v-for="category in categories"
@@ -40,12 +36,14 @@ import { mapState } from 'vuex';
 export default {
   components: {
     CatCard: () => import('../../components/Category'),
+    Visited: () => import('../../components/MostVisited'),
   },
   data() {
     return {
       categories: [],
       routeToShop: true,
       name: '',
+      mostVisited: [],
     }
   },
   watch: {

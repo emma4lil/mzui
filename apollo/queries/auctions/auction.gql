@@ -1,0 +1,13 @@
+query getBidsForAuction($auctionID: Int!) {
+  auctionRecords(where: { auction: { id: $auctionID } }) {
+    amount
+    user_id
+    bid_date
+    auction {
+      title
+      product {
+        name
+      }
+    }
+  }
+}
