@@ -1,12 +1,15 @@
-query getUserProdileMeta($id: ID!) {
+query getUserProfile($id: ID!, $pib_id: ID!) {
   user(id: $id) {
     email
     wallet {
       balance
-      floating_balance
     }
-    pib_records {
-      paid_amount
+
+    bits_registras(where: { pay_in_bit: { id: $pib_id } }) {
+      status
+      pay_in_bit {
+        name
+      }
     }
   }
 }

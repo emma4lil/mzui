@@ -27,6 +27,9 @@
             <v-col> </v-col>
 
             <v-col cols="12">
+              <div v-if="user.bits_registras[0].status === 'undefined'">
+                {{ user.bits_registras[0].status }}
+              </div>
               <v-progress-linear
                 :value="progress"
                 color="primary"
@@ -173,22 +176,24 @@ export default {
       loading: false,
       m: 'rat',
       amount: 0,
+      pibID: '',
     }
   },
   apollo: {
-    user: {
-      query: userData,
-      variables() {
-        return {
-          id: this.$auth.user.id,
-        }
-      },
-    },
     product: {
       query: productPIBR,
       variables() {
         return {
           product_id: this.$route.params.id,
+        }
+      },
+    },
+    user: {
+      query: userData,
+      variables() {
+        return {
+          id: this.$auth.user.id,
+          pib_id: this.pibID,
         }
       },
     },
@@ -207,6 +212,9 @@ export default {
       const r = this.product.price.newprice - this.totalPaid
       // eslint-disable-next-line vue/no-side-effects-in-computed-properties
       this.amount = r
+      // lazy hack should be refactored
+      // eslint-disable-next-line vue/no-side-effects-in-computed-properties
+      this.pibID = this.product.pay_in_bit.id
       return r
     },
     excedded() {
